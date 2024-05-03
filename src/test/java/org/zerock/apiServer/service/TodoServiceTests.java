@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.zerock.apiServer.dto.PageRequestDTO;
 import org.zerock.apiServer.dto.TodoDTO;
 
 import java.time.LocalDate;
@@ -30,5 +31,11 @@ public class TodoServiceTests {
                 .dueDate(LocalDate.of(2023,12,31))
                 .build();
         log.info(todoService.register(todoDTO));
+    }
+
+    @Test
+    public void testGetList() {
+        PageRequestDTO pageRequestDTO = PageRequestDTO.builder().build();
+        log.info(todoService.getList(pageRequestDTO));
     }
 }
