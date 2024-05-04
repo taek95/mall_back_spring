@@ -30,16 +30,16 @@ public class PageResponseDTO<E> {
 
         // 만약에 게시물이 8쪽 까지 밖에 없다면 8쪽이 마지막으로 뜨게 다시 작업
         // 만약 78개 있다면 7.8을 올림해서 8쪽까지 나오게 셋팅
-        int lastEnd = (int)(Math.ceil(totalCount/(double)pageRequestDTO.getSize()));
+        int last = (int)(Math.ceil(totalCount/(double)pageRequestDTO.getSize()));
 
-        end = end > lastEnd ? lastEnd : end;
+        end = end > last ? last : end;
         this.prev = start > 1;
         this.next = totalCount > end * pageRequestDTO.getSize();
 
         // 시작부터 끝까지 boxed
         this.pageNumList = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
         // 이전 페이지 번호는 있을 수도 없을 수도 있다.
-        this.prevPage = prev ? start - 1 : 0;
+        this.prevPage = prev ? start -1 : 0;
         this.nextPage = next ? end + 1 : 0;
 
     }
