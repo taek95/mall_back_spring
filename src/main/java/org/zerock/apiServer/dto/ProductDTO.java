@@ -32,6 +32,6 @@ public class ProductDTO {
 
     // 파일 이름들 목록
     @Builder.Default
-    private List<String> uploadedFileNames = new ArrayList<>();
+    private List<String> uploadFileNames = new ArrayList<>();
 
 }
