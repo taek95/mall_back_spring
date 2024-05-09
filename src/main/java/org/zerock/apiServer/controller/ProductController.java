@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.zerock.apiServer.dto.PageRequestDTO;
@@ -51,6 +52,8 @@ public class ProductController {
         return fileUtil.getFile(fileName);
     }
 
+    // 어떤 권한이 있는 사람한테 허락을 해줄거야?
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/list")
     public PageResponseDTO<ProductDTO> list(PageRequestDTO pageRequestDTO) {
         return productService.getList(pageRequestDTO);
